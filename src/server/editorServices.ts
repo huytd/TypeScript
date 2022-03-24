@@ -296,7 +296,7 @@ namespace ts.server {
 
     /*@internal*/
     export function convertUserPreferences(preferences: protocol.UserPreferences): UserPreferences {
-        const { lazyConfiguredProjectsFromExternalProject, ...userPreferences } = preferences;
+        const { lazyConfiguredProjectsFromExternalProject, includeCompletionsWithObjectLiteralMethodSnippets: true, ...userPreferences } = preferences;
         return userPreferences;
     }
 
