@@ -780,6 +780,10 @@ namespace ts.Completions {
                 return undefined;
             }
             ({ insertText, isSnippet, importAdder, labelDetails } = entry);
+            if (!preferences.includeCompletionsWithLabelDetails) {
+                name = name + labelDetails.detail;
+                labelDetails = undefined;
+            }
             source = CompletionSource.ObjectLiteralMethodSnippet;
             sortText = SortText.SortBelow(sortText);
             if (importAdder.hasFixes()) {
