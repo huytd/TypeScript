@@ -780,7 +780,7 @@ namespace ts.Completions {
                 return undefined;
             }
             ({ insertText, isSnippet, importAdder, labelDetails } = entry);
-            if (!preferences.includeCompletionsWithLabelDetails) {
+            if (!preferences.useLabelDetailsInCompletionEntries) {
                 name = name + labelDetails.detail;
                 labelDetails = undefined;
             }
@@ -1113,8 +1113,10 @@ namespace ts.Completions {
             target: options.target,
             omitTrailingSemicolon: true,
         });
+        // The `labelDetails.detail` will be displayed right beside the method name,
+        // so we drop the name (and modifiers) from the signature.
         const methodSignature = factory.createMethodSignature(
-            method.modifiers,
+            /*modifiers*/ undefined,
             /*name*/ "",
             method.questionToken,
             method.typeParameters,
